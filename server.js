@@ -3,17 +3,21 @@ const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
 const path = require('path')
-const stateAges = require('./data/state_age.json') // Pastikan JSON valid
+const stateAges = require('./data/state_age.json') 
 
 const app = express()
 const PORT = process.env.PORT || 8080
 
 app.use(
   cors({
-    origin: 'https://special-lazyness.vercel.app', // Ganti sesuai domain frontend kamu
+    origin: [
+      'https://special-lazyness.vercel.app',
+      'http://localhost:3000', 
+    ],
     methods: ['GET'],
   })
 )
+
 
 app.get('/sse', (req, res) => {
   res.set({
